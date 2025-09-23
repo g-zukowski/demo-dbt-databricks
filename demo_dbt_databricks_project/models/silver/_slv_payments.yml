@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: slv_payments
+    description: Silver payments table
+
+    columns:
+      - name: payment_key
+        data_type: string
+        tests:
+          - unique
+          - not_null
+        description: Payment surrogate key
+
+      - name: payment_no
+        data_type: string
+        tests:
+          - unique
+          - not_null
+        description: This is a unique identifier for an payment
+
+      - name: order_key
+        data_type: string
+        description: Foreign key to the slv_orders table
+        tests:
+          - not_null
+          - relationships:
+              to: ref('slv_orders')
+              field: order_key
+
+      - name: payment_method
+        data_type: string
+        description: Payment method
+        tests:
+          - accepted_values:
+              values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+
+      - name: payment_amount
+        data_type: decimal
+        description: Payment amount
+
+      - name: created_on
+        data_type: timestamp
+        description: When row was created in silver

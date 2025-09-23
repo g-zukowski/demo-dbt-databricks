@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: slv_orders
+    description: This table has basic information about orders, as well as some derived facts based on payments
+
+    columns:
+      - name: order_key
+        data_type: string
+        tests:
+          - unique
+          - not_null
+        description: Order surrogate key
+
+      - name: order_no
+        data_type: string
+        tests:
+          - unique
+          - not_null
+        description: This is a unique identifier for an order
+
+      - name: customer_key
+        data_type: string
+        description: Foreign key to the slv_customers table
+        tests:
+          - not_null
+          - relationships:
+              to: ref('slv_customers')
+              field: customer_key
+
+      - name: order_date
+        data_type: date
+        description: Date (UTC) that the order was placed
+
+      - name: order_status
+        description: Order status
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+
+      - name: created_on
+        data_type: timestamp
+        description: When row was created in silver

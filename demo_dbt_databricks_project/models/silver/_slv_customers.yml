@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: slv_customers
+    description: Silver customer table
+
+    columns:
+      - name: customer_key
+        data_type: string
+        description: Customer surrogate key
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_no
+        data_type: string
+        description: This is a unique identifier for a customer
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_first_name
+        data_type: string
+        description: Customer's first name. PII.
+
+      - name: customer_last_name
+        data_type: string
+        description: Customer's last name. PII.
+
+      - name: created_on
+        data_type: timestamp
+        description: When row was created in silver

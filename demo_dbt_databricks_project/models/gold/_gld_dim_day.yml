@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: gld_dim_day
+    description: Day dimension
+
+    columns:
+      - name: dim_day_key
+        data_type: int
+        description: Day in yyyymmdd format
+        tests:
+          - unique
+          - not_null
+        
+      - name: dim_day_dt
+        data_type: date
+        description: Day as a DATE
+
+      - name: dim_month_no
+        data_type: string
+        description: 2-character month number 01-12
+
+      - name: dim_month_nm
+        data_type: string
+        description: Full name of the month
+
+      - name: dim_year_no
+        data_type: string
+        description: 4-character year
+
+      - name: dim_last_day_of_month_dt
+        data_type: date
+        description: Last day of the month

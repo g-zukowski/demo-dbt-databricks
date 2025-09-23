@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: gld_fct_customer_value
+    description: Customer value fact
+
+    columns:
+      - name: dim_customer_key
+        #data_type: string
+        description: Customer surrogate key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: dim_customer_key
+        
+      - name: dim_first_order_day_key
+        #data_type: int
+        description: First order date foreign key
+
+      - name: dim_last_order_day_key
+        #data_type: int
+        description: Last order date foreign key
+
+      - name: kpi_number_of_orders
+        #data_type: int
+        description: Kpi number of customer orders
+
+      - name: kpi_customer_value
+        #data_type: int
+        description: Kpi value of total orders paid by customer

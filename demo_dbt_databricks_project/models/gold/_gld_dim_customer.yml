@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: gld_dim_customer
+    description: Customer dimension
+
+    columns:
+      - name: dim_customer_key
+        data_type: string
+        description: Customer surrogate key
+        tests:
+          - unique
+          - not_null
+        
+      - name: dim_customer_no
+        description: This is a unique identifier for a customer
+        tests:
+          - unique
+          - not_null
+
+      - name: dim_customer_first_name
+        description: Customer's first name. PII.
+
+      - name: dim_customer_last_name
+        description: Customer's last name. PII.

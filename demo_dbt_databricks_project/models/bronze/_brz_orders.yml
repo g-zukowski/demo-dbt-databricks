@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: brz_orders
+    description: "Bronze raw orders data"
+    columns:
+      - name: file_modification_time
+        description: Last data source file modification time
+      - name: file_name
+        description: Ingest data source file name
+      - name: created_on
+        description: When row was created in bronze
