@@ -4,18 +4,23 @@ models:
   - name: slv_customers
     description: Silver customer table
 
+    constraints:
+      - type: primary_key
+        columns: [customer_key]
+        warn_unenforced: false
+    
     columns:
       - name: customer_key
         data_type: string
         description: Customer surrogate key
-        tests:
+        data_tests:
           - unique
           - not_null
 
       - name: customer_no
         data_type: string
         description: This is a unique identifier for a customer
-        tests:
+        data_tests:
           - unique
           - not_null
 

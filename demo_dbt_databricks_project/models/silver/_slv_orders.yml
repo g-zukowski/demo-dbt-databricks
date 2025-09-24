@@ -4,17 +4,28 @@ models:
   - name: slv_orders
     description: This table has basic information about orders, as well as some derived facts based on payments
 
+    constraints:
+      - type: primary_key
+        columns: [order_key]
+        warn_unenforced: false
+
+      - type: foreign_key
+        columns: [customer_key]
+        to: ref('slv_customers')
+        to_columns: [customer_key]
+        warn_unenforced: false
+
     columns:
       - name: order_key
         data_type: string
-        tests:
+        data_tests:
           - unique
           - not_null
         description: Order surrogate key
 
       - name: order_no
         data_type: string
-        tests:
+        data_tests:
           - unique
           - not_null
         description: This is a unique identifier for an order
@@ -22,11 +33,12 @@ models:
       - name: customer_key
         data_type: string
         description: Foreign key to the slv_customers table
-        tests:
+        data_tests:
           - not_null
           - relationships:
-              to: ref('slv_customers')
-              field: customer_key
+              arguments:
+                to: ref('slv_customers')
+                field: customer_key
 
       - name: order_date
         data_type: date
@@ -34,9 +46,10 @@ models:
 
       - name: order_status
         description: Order status
-        tests:
+        data_tests:
           - accepted_values:
-              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+              arguments:
+                values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
 
       - name: created_on
         data_type: timestamp

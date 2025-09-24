@@ -8,11 +8,12 @@ models:
       - name: dim_customer_key
         #data_type: string
         description: Customer surrogate key
-        tests:
+        data_tests:
           - not_null
           - relationships:
-              to: ref('dim_customer')
-              field: dim_customer_key
+              arguments:
+                to: ref('gld_dim_customer')
+                field: dim_customer_key
         
       - name: dim_first_order_day_key
         #data_type: int
