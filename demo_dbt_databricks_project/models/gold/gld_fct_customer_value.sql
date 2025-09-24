@@ -40,5 +40,5 @@ select
 from slv_customers c
 inner join customer_orders co
     on c.customer_key = co.customer_key
-left join customer_payments cp
+inner join customer_payments cp
     on c.customer_key = cp.customer_key;

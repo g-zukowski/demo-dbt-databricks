@@ -5,6 +5,9 @@ models:
     description: Silver customer table
 
     constraints:
+      - type: not_null
+        columns: [customer_key]
+
       - type: primary_key
         columns: [customer_key]
         warn_unenforced: false

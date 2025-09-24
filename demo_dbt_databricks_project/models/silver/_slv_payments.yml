@@ -5,6 +5,9 @@ models:
     description: Silver payments table
 
     constraints:
+      - type: not_null
+        columns: [payment_key]
+    
       - type: primary_key
         columns: [payment_key]
         warn_unenforced: false
